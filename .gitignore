@@ -3,5 +3,7 @@
 !*.png
 !*.tex
 !*.pdf
+!*.c
+!*.py
 !docs
 !docs/*
