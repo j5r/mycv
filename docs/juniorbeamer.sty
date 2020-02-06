@@ -1,0 +1,144 @@
+\ProvidesPackage{juniorbeamer} [2017/02/12 Minhas configuracoes]
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage{etex}
+%COMANDOS DISPONIBILIZADOS
+% \azul \amarelo \cinza  \laranja \marrom \vermelho \verde \roxo \rosa
+% \cqd \latex
+% \N \Z \Q \I \R \C \sen \tg
+% \ATENCAO[1] \Atencao[1] \atencao[2] \EXEMPLO[1] \exemplo[2]
+
+%% USO DE PACOTES
+%  ERROR\usepackage{pdfpages} pacote xcolor não é compatível com pdfpages
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+
+\RequirePackage{graphicx}
+\RequirePackage{float}
+
+\RequirePackage{ragged2e}
+\justifying
+
+\RequirePackage{url}
+
+\RequirePackage{multicol}
+
+\RequirePackage{indentfirst}
+
+\RequirePackage{CJKutf8}  
+\RequirePackage[portuguese]{babel}  
+\RequirePackage[overlap, CJK]{ruby}  
+\RequirePackage{CJKulem}  
+\newenvironment{Japanese}{  
+\CJKfamily{min} 
+\CJKtilde  
+\CJKnospace}{}  
+\newenvironment{nippon}
+{
+\begin{CJK}{UTF8}{}  
+\begin{Japanese}
+}
+{
+\end{Japanese}  
+\end{CJK}
+}
+
+%% DEFINIÇÕES DE ESPAÇAMENTOS
+\setlength{\parskip}{.1cm}
+\setlength{\parindent}{.5cm}
+
+
+%% DEFINIÇÕES DE NOVOS COMANDOS
+\def\latex{\LaTeX\,\! }
+%\newcommand{\ATENCAO}[1]{
+%                                              \begin{quote}
+%                                              \vermelho{\bf ATENÇÃO!} #1
+%                                              \end{quote}
+%                                              }
+%\newcommand{\Atencao}[1]{    {
+%                                              \vermelho{\bf ATENÇÃO!} #1}
+%                                              }
+%\newcommand{\atencao}[2]{
+%                                              \begin{quote}
+%                                              \vermelho{\bf #1} #2
+%                                              \end{quote}
+%                                              }
+%
+%\newcommand{\EXEMPLO}[1]{
+%                                             {\verde \bf EXEMPLO:} 
+%                                              \begin{quote}
+%                                              \verde#1
+%                                              \end{quote}
+%                                              }
+%\newcommand{\exemplo}[2]{
+%                                               {\verde \bf #1} 
+%                                              \begin{quote}
+%                                              \verde #2
+%                                              \end{quote}
+%                                              }
+%% DEFINIÇÕES DE CORES
+
+
+
+%\usepackage{amsopn} necessário?
+%%  DEFINIÇÕES MATEMÁTICAS
+
+\def \cqd{
+                         \vspace*{-.3cm}
+                         \begin{flushright}
+                         $\blacksquare$
+                         \end{flushright}
+                        \vspace*{-.3cm}
+                 }
+
+\RequirePackage{xspace}
+\def\deg{\ensuremath{{}^{\circ}}\xspace} %símbolo de graus
+
+\newenvironment{bloco}[1]{\begin{block}{#1}\justify }{\end{block}}
+
+
+
+
+\RequirePackage{tikz,tkz-tab}%
+\usetikzlibrary{matrix,arrows, positioning,shadows,shadings,backgrounds,
+calc, shapes, tikzmark}
+\RequirePackage{tcolorbox, empheq}%
+\tcbuselibrary{skins,breakable,listings,theorems}
+
+\newenvironment{bloco1}[1]
+{
+\begin{tcolorbox}[colback=cyan!5!white, % Color del fondo
+colframe=blue!75!cyan, % Color borde
+title=#1]
+}
+{
+\end{tcolorbox}
+}
+
+\newenvironment{bloco2}[1]
+{
+\begin{tcolorbox}[colback=magenta!5!white, % Color del fondo
+colframe=red!75!magenta, % Color borde
+title=#1]
+}
+{
+\end{tcolorbox}
+}
+
+\newenvironment{bloco3}[1]
+{
+\begin{tcolorbox}[colback=blue!5!white, % Color del fondo
+colframe=green!75!blue, % Color borde
+title= #1]
+}
+{
+\end{tcolorbox}
+}
+
+
+

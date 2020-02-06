@@ -1,0 +1,127 @@
+\RequirePackage{amsfonts,amssymb,amsmath}
+
+%%      DEFININDO COMANDO PARA FUNÇÃO INDICADORA \1{ }
+%%
+\DeclareSymbolFont{bbold}{U}{bbold}{m}{n}
+\DeclareSymbolFontAlphabet{\mathbbold}{bbold}
+\newcommand{\1}[1]{\ \mathbbold{1}_{\{#1\}}}
+%%
+%%       FIM
+\newcommand{\pInt}[2]{\left\langle#1,#2\right\rangle}
+\DeclareMathOperator{\vet}{\mathbf{vec}}
+
+%% DEFININDO ATALHOS PARA CALIGRÁFICOS MATEMÁTICOS
+%%
+
+%%% Mathbb
+\def\AA{\mathbb{A}}
+\def\BB{\mathbb{B}}
+\def\CC{\mathbb{C}}
+\def\DD{\mathbb{D}}
+\def\EE{\mathbb{E}}
+\def\FF{\mathbb{F}}
+\def\GG{\mathbb{G}}
+\def\HH{\mathbb{H}}
+\def\II{\mathbb{I}}
+\def\JJ{\mathbb{J}}
+\def\KK{\mathbb{K}}
+\def\LL{\mathbb{L}}
+\def\MM{\mathbb{M}}
+\def\NN{\mathbb{N}}
+\def\OO{\mathbb{O}}
+\def\PP{\mathbb{P}}
+\def\QQ{\mathbb{Q}}
+\def\RR{\mathbb{R}}
+\def\SS{\mathbb{S}}
+\def\TT{\mathbb{T}}
+\def\UU{\mathbb{U}}
+\def\VV{\mathbb{V}}
+\def\WW{\mathbb{W}}
+\def\XX{\mathbb{X}}
+\def\YY{\mathbb{Y}}
+\def\ZZ{\mathbb{Z}}
+
+%%% Mathcal
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calD{\mathcal{D}}
+\def\calE{\mathcal{E}}
+\def\calF{\mathcal{F}}
+\def\calG{\mathcal{G}}
+\def\calH{\mathcal{H}}
+\def\calI{\mathcal{I}}
+\def\calJ{\mathcal{J}}
+\def\calK{\mathcal{K}}
+\def\calL{\mathcal{L}}
+\def\calM{\mathcal{M}}
+\def\calN{\mathcal{N}}
+\def\calO{\mathcal{O}}
+\def\calP{\mathcal{P}}
+\def\calQ{\mathcal{Q}}
+\def\calR{\mathcal{R}}
+\def\calS{\mathcal{S}}
+\def\calT{\mathcal{T}}
+\def\calU{\mathcal{U}}
+\def\calV{\mathcal{V}}
+\def\calW{\mathcal{W}}
+\def\calX{\mathcal{X}}
+\def\calY{\mathcal{Y}}
+\def\calZ{\mathcal{Z}}
+
+%%% Mathbf
+\def\bfA{\mathbf{A}}
+\def\bfB{\mathbf{B}}
+\def\bfC{\mathbf{C}}
+\def\bfD{\mathbf{D}}
+\def\bfE{\mathbf{E}}
+\def\bfF{\mathbf{F}}
+\def\bfG{\mathbf{G}}
+\def\bfH{\mathbf{H}}
+\def\bfI{\mathbf{I}}
+\def\bfJ{\mathbf{J}}
+\def\bfK{\mathbf{K}}
+\def\bfL{\mathbf{L}}
+\def\bfM{\mathbf{M}}
+\def\bfN{\mathbf{N}}
+\def\bfO{\mathbf{O}}
+\def\bfP{\mathbf{P}}
+\def\bfQ{\mathbf{Q}}
+\def\bfR{\mathbf{R}}
+\def\bfS{\mathbf{S}}
+\def\bfT{\mathbf{T}}
+\def\bfU{\mathbf{U}}
+\def\bfV{\mathbf{V}}
+\def\bfW{\mathbf{W}}
+\def\bfX{\mathbf{X}}
+\def\bfY{\mathbf{Y}}
+\def\bfZ{\mathbf{Z}}
+
+
+
+
+
+
+
+
+%% DEFININDO COMANDOS MATEMÁTICOS
+%%
+
+%% produto interno \produto{}{}
+\newcommand{\produto}[2]{\left\langle#1,#2\right\rangle}
+
+%% funções trigonométricas
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\arcsen}{arc\,sen}
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\arctg}{arc\,tg}
+\DeclareMathOperator{\cotg}{cotg}
+\DeclareMathOperator{\arccotg}{arc\,cotg}
+
+% operador traço de matriz        \optr{ }
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\optr}[1]{\tr\left(#1\right)}
+
+% operador esperança/condicional   \opesp{} \opespc{}
+\newcommand{\opesp}[1]{\bfE\left(#1\right)}
+\newcommand{\opespc}[2]{\bfE\left(\left.#1\right|#2\right)}
