@@ -3,4 +3,4 @@
 !*.png
 !*.tex
 !*.pdf
-!docs
+!docs/*
