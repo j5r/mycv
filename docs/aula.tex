@@ -1,0 +1,503 @@
+\documentclass{beamer}%linha 527 e 540
+\usepackage{atalhos,juniorbeamer}
+\setbeamertemplate{theorems}[numbered] %para numerar as definições de teoremas
+\newtheorem{defin}{Formulário}[section]
+\newtheorem{definicao}[defin]{Definição}
+\everymath{\displaystyle }
+\usepackage{pgfplots,tikz,comment}
+\def\azul{\color{blue!90!black}}
+\pgfplotsset{width=7cm}
+\usetikzlibrary{arrows}
+\setlength{\parskip}{0.6em}
+\AtBeginSection[]
+{
+   \begin{frame}
+        \frametitle{Conteúdo}
+        \tableofcontents[currentsection,currentsubsection]
+   \end{frame}
+}
+\renewcommand{\familydefault}{\rmdefault}
+\newtheorem{teo}[defin]{Teorema}
+\mode<presentation> {
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}%
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}%
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+\usetheme{Ilmenau}%%
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+\newcommand{\enf}[1]{\textbf{\color{red} #1}}
+\newcommand{\pag}{
+	{
+	\small[\insertframenumber{}/\inserttotalframenumber]
+	}\xspace
+}
+
+\usepackage{txfonts,bclogo}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Estruturas de Controle]
+{Programação em linguagem estruturada: estruturas de controle} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{\bf Junior Rodrigues Ribeiro} % Your name
+\institute[ICMC] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+USP --- ICMC \\ % Your institution for the title page
+}
+\date{\today} % Date, can be changed to a custom date
+\setbeamertemplate{navigation symbols}{}
+\date{\small 06 de Fevereiro de 2020 \\[.3cm] E-mail: \texttt{jrodrib@usp.br}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%       INICIO       %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\w{\omega}
+\renewcommand{\familydefault}{\rmdefault}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FRAME 0.0 %%%%
+\begin{frame}
+\titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FRAME 0.1 %%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%     INICIO     %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section[Estruturas]{Estruturas de controle}
+\begin{frame}{Estruturas de controle}
+São três as estruturas de controle que modelam um programa estruturado:
+\begin{itemize}
+\item Sequência (\textbf{vá para (goto)*});
+\item Decisão (se-então-senão, interruptor-caso-padrão);
+\item Repetição (faça-enquanto, enquanto, para);
+\end{itemize}
+Todas elas são importantes e são usadas com muita frequência.
+
+%Há também comandos de desvio do fluxo de execução. São eles \textit{retorne, pare} e  \textit{continue}. São usados para modificar a sequência da execução e são usados muitas vezes em conjunto com estruturas de seleção.
+\end{frame}
+
+
+
+\section{Sequência}
+\begin{frame}{Sequência}
+As estruturas de sequência, como o próprio nome diz, indicam que o
+programa será executado linha após linha, na mesma sequência em que
+os comandos aparecem.
+
+Antigamente, na programação não estruturada (antecessora da estruturada) havia a possibilidade de declarar seções de código explicitamente, e então mudar o curso de execução do programa com o \textbf{vá para (goto)}. Essa prática tornava os programas muito difíceis de ler, e por isso é incisivamente desencorajada.
+
+O próximo exemplo ilustra como o \textit{goto} é problemático.
+\end{frame}
+
+
+
+\begin{frame}{Uso do \textbf{goto}: dificulta a leitura do código pelo programador}{Não é recomendado usá-lo!}
+\begin{quote}\small
+!programa para calcular soma = $\textstyle\sum_{k=1}^{5}k$\\
+contador = 0\\
+soma = 0\\
+\textbf{goto} seção2\\
+\textbf{seção1:}\\
+escreva (soma)\qquad\qquad\qquad\qquad\!\!\!\! \fbox{15}\\
+escreva ("fim do programa") \qquad \fbox{fim do programa}\\
+\textbf{goto} seçãoFim\\
+\textbf{seção2:}\\
+contador = contador + 1\\
+soma = soma + contador\\
+se(contador < 5) \textbf{goto} seção2\\
+senão \textbf{goto} seção1\\
+\textbf{seçãoFim:}\\
+escreva("Fim :)")\qquad\qquad\qquad\quad \fbox{\rm Fim :)}
+\end{quote}
+\end{frame}
+
+
+
+
+\section[Seleção]{Decisão/Seleção/Condicional}
+\begin{frame}{Decisão/Seleção}
+As estruturas de decisão modificam o fluxo de execução, de acordo
+com o valor lógico de uma expressão lógica avaliada.
+\begin{itemize}\justifying
+\item O exemplo mais
+notório é o \textit{se-então-senão} (if-then-else).
+
+{\azul se (expressão lógica) é verdadeira, então execute\\
+\qquad    (sequência)\\
+senão*, execute\\
+\qquad    (sequência)\\
+fim se}
+
+\item Outra estrutura muito importante é o \textit{interruptor-caso-padrão}
+(switch-case-default), que é uma sequência de comparações,
+dividindo o fluxo de execução em uma porção de outros fluxos,
+conforme cada caso. Uma determinada variável é selecionada e seu
+valor é comparado com cada caso.
+\end{itemize}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+interruptor-caso-padrão (switch-case-default)
+
+{\azul interruptor (variável):\\
+\qquad    caso valha x,\\
+\qquad\qquad    (sequência)\\
+\qquad    caso valha y,\\
+\qquad\qquad    (sequência)\\
+\qquad    caso valha z,\\
+\qquad\qquad    (sequência)\\
+\qquad    caso padrão*,\\
+\qquad\qquad    (sequência)\\
+fim interruptor
+}
+
+Os itens \textbf{senão} (else) e \textbf{caso padrão} (default) não são
+obrigatórios, e podem ser omitidos.
+\end{frame}
+
+
+
+
+
+
+\section[Repetição]{Repetição/Looping/Laços/Iteração}
+\begin{frame}
+As estruturas de repetição geralmente combinam uma expressão lógica
+e uma sequência de comandos. São elas: \textit{para},
+\textit{enquanto} e \textit{faça-enquanto} (for, while, do-while).
+\begin{itemize}\justifying
+\item Para: é uma estrutura utilizada para quando o número de
+repetições é conhecido. Neste caso, as repetições são realizadas
+até que o número seja atingido. Outras implementações trabalham com
+estruturas de dados iteráveis, de forma que a estrutura "para"\ é
+repetida uma vez para cada elemento da estrutura de dados, até que ela
+seja esgotada.
+
+
+{\azul para x de 1 até 10, execute\\
+\qquad  (sequência)\\
+fim para
+}
+
+
+ou
+
+
+{\azul para aluno em listaDeAlunos,\\
+\qquad  (sequência)\\
+fim para
+}
+
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{itemize}\justifying
+\item Enquanto: a estrutura "enquanto"\ é utilizada sempre que não se
+sabe a priori quantas vezes precisamos da repetição. Uma condição
+lógica é útil para que a repetição termine em algum momento. Do
+contrário, o programa executará para sempre. Assim, nessa estrutura,
+precisamos de uma condição de parada, ou seja, enquanto a expressão
+lógica for verdadeira, a sequência é executada.
+
+{\azul
+enquanto (expressão lógica) for verdadeira, execute\\
+\qquad (sequência)\\
+fim enquanto
+}
+
+Essa estrutura avalia primeiro a expressão lógica para então dar
+sequência. Caso a expressão lógica já seja inicialmente falsa, a
+sequência não será executada.
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\begin{itemize}\justifying
+\item Faça-enquanto: a estrutura "faça-enquanto"\ só tem uma diferença em relação à
+estrutura "enquanto": ela executa a sequência de instruções para
+depois verificar a expressão lógica (a sequência é
+executada pelo menos uma vez). É frequentemente usada em menus.
+
+{\azul
+faça\\
+\qquad (sequência)\\
+enquanto (expressão lógica) for verdadeira
+}
+\end{itemize}
+\end{frame}
+
+\section[Aninhamento]{Aninhamento de estruturas (nesting)}
+\begin{frame}{Aninhamento de estruturas (nesting)}
+As estruturas apresentadas podem também ser usadas repetidas vezes e
+combinadas. Um bom exemplo é escrever uma matriz (3x5) na tela.
+
+{\azul
+para linha de 1 até 3,\\
+\qquad para coluna de 1 até 5,\\
+\qquad\qquad escreva( matriz[linha][coluna] + \_espaço)\\
+\qquad fim para\\
+\qquad escreva(\_quebra\_de\_linha)\\
+fim para
+}
+
+<Teste de mesa>
+\end{frame}
+
+
+
+\begin{frame}
+Outro exemplo: escrever o nome de alunos aprovados
+
+{\azul
+para aluno em listaDeAlunos,\\
+\qquad se aluno.médiaFinal >= 5.0,\\
+\qquad\qquad escreva( aluno.nome + " está aprovado.")\\
+\qquad senão, se aluno.médiaFinal >= 3.0\\
+\qquad\qquad\qquad escreva( aluno.nome + " está de recuperação")\\
+\qquad\qquad senão\\
+\qquad\qquad\qquad escreva( aluno.nome + " está reprovado")\\
+\qquad\qquad fim se\\
+\qquad fim se\\
+\qquad escreva(\_quebra\_de\_linha)\\
+fim para
+}
+\end{frame}
+
+
+
+\begin{frame}
+Outro exemplo: menu de opções
+
+{\azul
+faça\\
+\qquad escreva("1 - listar produtos")\\
+\qquad escreva("2 - cadastrar produtos")\\
+\qquad escreva("3 - editar produtos")\\
+\qquad escreva("4 - deletar produtos")\\
+\qquad escreva("0 - sair")\\
+\qquad opção = leia( )\\
+\qquad interruptor(opção)\\
+\qquad\qquad caso 1\\
+\qquad\qquad\qquad  listarProdutos( )\\
+\qquad\qquad caso 2\\
+\qquad\qquad\qquad  cadastrarProdutos( )
+}
+\end{frame}
+
+
+
+\begin{frame}\
+{\azul
+\qquad\qquad caso 3\\
+\qquad\qquad\qquad  editarProdutos( )\\
+\qquad\qquad caso 4\\
+\qquad\qquad\qquad  deletarProdutos( )\\
+\qquad\qquad caso 0\\
+\qquad\qquad\qquad escreva("Você escolheu sair. Até breve!")\\
+\qquad\qquad padrão\\
+\qquad\qquad\qquad escreva("Opção inválida.")\\
+\qquad fim interruptor\\
+enquanto(opção != 0)
+}
+\end{frame}
+
+
+
+
+\section{Desvios}
+\begin{frame}{Estruturas de desvios}
+Há também a possibilidade de desviar o fluxo de execução de um
+programa, usando \textit{tentar-pegar} (try-catch), \textit{retornar}
+(return), \textit{parar} (break) e  \textit{continuar} (continue).
+
+\begin{itemize}\justifying
+\item Tentar-Pegar: é uma estrutura parecida com Se-Então-Senão, mas
+para tratamento de erros. \\
+{\azul
+tentar\\
+\qquad (sequência)\\
+pegar (erro)\\
+\qquad (sequência para tratar o erro)\\
+fim tentar
+}
+
+Exemplo: Tentar abrir um arquivo. Se o arquivo não existir ocorrerá
+um erro. Algo que pode ser feito é dizer ao usuário que o arquivo
+não existe.
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+ \begin{itemize}\justifying\small
+\item Retornar: é usado dentro de funções. Diz ao programa que não
+há interesse de continuar a execução, mas sim, de retornar à linha
+na qual a função foi chamada (usando um se-senão?). Existe a
+possibilidade de carregar consigo alguma informação para o código que a
+chamou. Em algumas linguagens, esta estrutura é implícita ao final da
+função, não precisando ser declarada.\\
+{\azul
+função cadastro(parâmetro1, parâmetro2)\\
+\qquad (sequência)\\
+\qquad se (expressão lógica)\\
+\qquad\qquad retorne 5\\
+\qquad senão, se (expressão lógica)\\
+\qquad\qquad\qquad retorne -5\\
+\qquad\qquad senão\\
+\qquad\qquad\qquad (sequência)\\
+\qquad\qquad fim se\\
+\qquad fim se\\
+\qquad retorne 0\\
+fim função\\
+\\
+código = cadastro("João", "Maria")
+}
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+ \begin{itemize}\justifying
+\item Parar: é usado dentro de repetições. Diz ao programa que não
+há interesse de continuar as repetições (usando um se-senão?). O
+fluxo de execução é enviado ao final do laço.\\
+{\azul
+enquanto (expressão lógica)\\
+\qquad (sequência)\\
+\qquad se (expressão lógica)\\
+\qquad\qquad pare >>\\
+\qquad fim se\\
+\qquad (sequência)\\
+fim enquanto>>\\
+(sequência)
+}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+ \begin{itemize}\justifying
+\item Continuar: também é usado dentro de repetições. Diz ao programa que não
+há interesse de continuar aquela repetição em específico (usando um se-senão?).
+O fluxo de execução é enviado ao começo do laço, pronto para a
+iteração seguinte.\\
+{\azul
+>> enquanto (expressão lógica)\\
+\qquad (sequência)\\
+\qquad se (expressão lógica)\\
+\qquad\qquad continue >>\\
+\qquad fim se\\
+\qquad (sequência)\\
+fim enquanto\\
+(sequência)
+}
+\end{itemize}
+
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%     REFERÊNCIAS    %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Referências}
+\begin{frame}{Referências}
+\footnotesize{
+\begin{thebibliography}{99}
+\bibitem[Martin, 1991]{martin} MARTIN, J. Técnicas estruturadas e
+CASE. Obra traduzida. São Paulo. Makron Books, 1991.
+
+\bibitem[Python.Org]{python} Linguagem Python
+\url{https://docs.python.org/pt-br}
+
+\bibitem[CPlusPlus]{cpp} Linguagem C/C++
+\url{http://www.cplusplus.com}
+\end{thebibliography}
+}
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}
+\Huge{\centerline{\bcnote \dotfill \bcclesol \dotfill$_{\bfF\ \bfI\ \bfM}$\dotfill \bcclefa \dotfill \bcnote}}
+
+\begin{center}
+\bctrefle Muito obrigado!\bctrefle
+\end{center}
+\end{frame}
+\end{document}
