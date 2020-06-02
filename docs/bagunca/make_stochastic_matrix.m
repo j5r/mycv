@@ -1,4 +1,8 @@
-% creates a stochastic matrix (by rows)
+% -------------------------------------------------------------------
+% By JRR May 29, 2020.
+% It creates a stochastic matrix by rows
+%
+% -------------------------------------------------------------------
 function P = make_stochastic_matrix(n)
   P = rand(n).*validRandi(n);
   for i=1:n

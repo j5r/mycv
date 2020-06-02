@@ -1,4 +1,10 @@
-
+% -------------------------------------------------------------------
+% By JRR May 29, 2020.
+% It plots the probability distribution of a homogeneous Markov chain 
+% since it is given the transition probability matrix P an
+% initial distribution pi0 and a number of discrete periods to sample.
+%
+% -------------------------------------------------------------------
 function plotdistrib(P,pi0,n)
   n=n+1;
   pi = zeros(numel(pi0),n);
