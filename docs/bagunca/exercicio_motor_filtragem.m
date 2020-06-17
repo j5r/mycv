@@ -27,9 +27,9 @@ A = [-5.0027e-4, -2.2887e-2;
 G = 0.1*[0.7906;
      7.6009];
 C = [0,1];
-H = 0.001;
+H = 10.00;
 
-v_eq = 10;
+v_eq = 0;
 
 exogenous_input = -G*v_eq;
 
@@ -37,7 +37,7 @@ exogenous_input = -G*v_eq;
 m = 1*repmat(exogenous_input,1,k_max);
 
 % mean of x(0)
-bar_x_0 = 1*[2.8057;
+bar_x_0 = 0*[2.8057;
            244.12];
 
 % for uncomment, do %%{ and for comment, do %{
@@ -168,10 +168,10 @@ end
 %title('estimation quadratic error')
 
 figure;
-plot(norm_x_real,'b-','linewidth',2); hold on;
-plot(norm_x_estimated,'r-.','linewidth',2.2);
-plot(norm_x_error,'m-.','linewidth',1);
-plot(norm_x_error_mean,'g-:','linewidth',1);
+plot(norm_x_real,'b-','LineWidth',2); hold on;
+plot(norm_x_estimated,'r-.','LineWidth',2.2);
+plot(norm_x_error,'m-.','LineWidth',1);
+plot(norm_x_error_mean,'g-.','LineWidth',1);
 grid on; hold off;
 title('Norms: real, estimated, error and expected error')
 legend('real','estimated','error','expected error');
@@ -179,10 +179,10 @@ saveas(1,'norm_of_state.pdf');
 
 
 figure;
-plot(x_real(1,:),'b-','linewidth',2); hold on;
-plot(x_estimated(1,:),'r-.','linewidth',2.2);
-plot(x_error(1,:),'m-.','linewidth',1);
-plot(x_error_mean(1,:),'g-:','linewidth',1);
+plot(x_real(1,:),'b-','LineWidth',2); hold on;
+plot(x_estimated(1,:),'r-.','LineWidth',2.2);
+plot(x_error(1,:),'m-.','LineWidth',1);
+plot(x_error_mean(1,:),'g-.','LineWidth',1);
 grid on; hold off;
 xlabel('time [0.01s]');
 ylabel('Current [A]');
@@ -192,10 +192,10 @@ saveas(2,'current.pdf');
 
 
 figure;
-plot(x_real(2,:),'b-','linewidth',2); hold on;
-plot(x_estimated(2,:),'r-.','linewidth',2.2);
-plot(x_error(2,:),'m-.','linewidth',1);
-plot(x_error_mean(2,:),'g-:','linewidth',1);
+plot(x_real(2,:),'b-','LineWidth',2); hold on;
+plot(x_estimated(2,:),'r-.','LineWidth',2.2);
+plot(x_error(2,:),'m-.','LineWidth',1);
+plot(x_error_mean(2,:),'g-.','LineWidth',1);
 xlabel('time [0.01s]');
 ylabel('Angular speed [rad/s]');
 grid on; hold off;
@@ -203,3 +203,18 @@ title('Angular speed: real, estimated, error and expected error')
 legend('real','estimated','error','expected error');
 saveas(3,'angular_speed.pdf');
 
+
+
+% table to display statistics (mean and std of error and expected error)
+% throughout time
+
+mytable = table({'mean of error'; 'std of error'; 'mean of expected error';
+    'std of expected error'}, [mean(x_error(1,:)); std(x_error(1,:));
+    mean(x_error_mean(1,:)); std(x_error_mean(1,:))], [mean(x_error(2,:)); 
+    std(x_error(2,:)); mean(x_error_mean(2,:));
+    std(x_error_mean(2,:))], [mean(norm_x_error); std(norm_x_error);
+    mean(norm_x_error_mean); std(norm_x_error_mean)], 'VariableNames',{'MEASUREMENT';
+    'CURRENT';'ANGULAR_SPEED';'VECTOR_NORM'});
+
+
+disp(mytable)
