@@ -18,16 +18,20 @@
 close all,clear,clc;
 % dimentions
 k_max = 250;
-dim_x = 5;
-dim_w = 4;
-dim_y = 5;  %must to be <= dim_x
-dim_v = 5; 
+dim_x = 2;
+dim_w = 1;
+dim_y = 1;  %must to be <= dim_x
+dim_v = 1;
 
 % matrices
-A = 0.9*eye(dim_x, dim_x);
-G = eye(dim_x, dim_w);
-C = eye(dim_y, dim_x);
-H = eye(dim_y, dim_v);
+A = [-5.0027e-4, -2.2887e-2;
+      1.6495e-2,  7.6453e-1];
+
+G = 0.1*[0.7906;
+         7.6009];
+C = [0,1];
+
+H = 1000;
 
 Q = eye(dim_w, dim_w);               % covariance of w(k)
 R = eye(dim_v, dim_v);               % covariance of v(k)
